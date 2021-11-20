@@ -1,6 +1,5 @@
 const UI = SpreadsheetApp.getUi();
 const WORKBOOK = SpreadsheetApp.getActive();
-const CACHE = CacheService.getScriptCache();
 
 function onOpen() {
   UI.createMenu('📁 Archive')
@@ -20,11 +19,7 @@ USAGE:
 }
 
 // Helper function to return the server-side .zip data. This function will be called from the client-side HtmlService dialog.
-function getData() {
-  return CACHE.get('data'); // Will be injected into a data URL, must be base64 encoded
-}
-
-function generateCSVArchive() {
+function generateZipData() {
   const sheets = WORKBOOK.getSheets();
 
   let csvBlobs = [];
@@ -36,11 +31,13 @@ function generateCSVArchive() {
 
   const zip = Utilities.zip(csvBlobs);
 
-  CACHE.put('data', Utilities.base64Encode(zip.getBytes())); // MUST use CacheService. Changes to global variables in GAS do not persist to other functions.
+  return Utilities.base64Encode(zip.getBytes());
+}
 
+function generateCSVArchive() {
   // Generate an <a> tag with a data URL containing the base64-encoded data from above.
   // To fetch the server-side data from the client-side iframe, google.script.run.withSuccessHandler.(callback).getData() is called, where the callback is a function to inject the data to the <a> tag and getData is a helper function.
-  const html = HtmlService.createHtmlOutput("<a download>Download</a><script>google.script.run.withSuccessHandler(data => document.querySelector('a').setAttribute('href', `data:application/zip;base64,${data}`)).getData()</script>");
+  const html = HtmlService.createHtmlOutput("<a download>Download</a><script>google.script.run.withSuccessHandler(data => document.querySelector('a').setAttribute('href', `data:application/zip;base64,${data}`)).generateZipData()</script>");
 
   UI.showModalDialog(html, 'Generating CSV archive...');
 }
