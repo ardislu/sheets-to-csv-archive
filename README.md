@@ -10,7 +10,9 @@ This is a Google Apps Script (GAS) project which adds a "Generate CSV Archive" b
 
 3. Copy the code from `Code.gs` in this repository and paste it into the `Code.gs` file in the GAS editor
 
-4. Save the GAS project
+4. Copy the code from `download.html` in this repository and paste it into a new `download.html` file in the GAS editor (create a new file using the GAS editor)
+
+5. Save the GAS project
 
 ## Usage
 

@@ -1,0 +1,11 @@
+<a download></a>
+
+<script>
+  const callback = data => {
+    const a = document.querySelector('a');
+    a.setAttribute('href', `data:application/zip;base64,${data}`);
+    a.textContent = 'Download ready! Click here to download the .zip archive.';
+  }
+
+  google.script.run.withSuccessHandler(callback).generateZipData();
+</script>
