@@ -36,7 +36,7 @@ function generateZipData() {
 
 function generateCSVArchive() {
   // Generate an <a> tag with a data URL containing the base64-encoded data from above.
-  // To fetch the server-side data from the client-side iframe, google.script.run.withSuccessHandler.(callback).getData() is called, where the callback is a function to inject the data to the <a> tag and getData is a helper function.
+  // To fetch the server-side data from the client-side iframe, google.script.run.withSuccessHandler.(callback).generateZipData() is called, where the callback is a function to inject the data to the <a> tag and generateZipData is a helper function.
   const html = HtmlService.createHtmlOutput("<a download>Download</a><script>google.script.run.withSuccessHandler(data => document.querySelector('a').setAttribute('href', `data:application/zip;base64,${data}`)).generateZipData()</script>");
 
   UI.showModalDialog(html, 'Generating CSV archive...');
