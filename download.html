@@ -1,10 +1,35 @@
-<a download></a>
+<style type="text/css">
+  span {
+    display: inline-block;
+    box-sizing: border-box;
+    height: 1em;
+    width: 1em;
+    border: 0.25em solid transparent;
+    border-top: 0.25em solid black;
+    border-radius: 50%;
+    animation: 1s infinite spin;
+  }
+
+  @keyframes spin {
+    from {
+      transform: rotate(0deg);
+    }
+
+    to {
+      transform: rotate(360deg);
+    }
+  }
+</style>
+
+<span></span><a download></a>
 
 <script>
   const callback = data => {
     const a = document.querySelector('a');
     a.setAttribute('href', `data:application/zip;base64,${data}`);
     a.textContent = 'Download ready! Click here to download the .zip archive.';
+
+    document.querySelector('span').remove();
   }
 
   google.script.run.withSuccessHandler(callback).generateZipData();
