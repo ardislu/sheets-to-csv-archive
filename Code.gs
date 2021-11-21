@@ -44,8 +44,8 @@ function generateZipData() {
 }
 
 function generateCSVArchive() {
-  // Generate an <a> tag with a data URL containing the base64-encoded data from above.
-  // To fetch the server-side data from the client-side iframe, google.script.run.withSuccessHandler.(callback).generateZipData() is called, where the callback is a function to inject the data to the <a> tag and generateZipData is a helper function.
+  // To fetch the server-side data from the client-side iframe, google.script.run.withSuccessHandler.(callback).generateZipData() is called, 
+  // where callback is a function to inject the data to an <a> tag and generateZipData is a helper function.
   const html = HtmlService.createHtmlOutputFromFile('download');
 
   // If you don't want to use a separate download.html file, you can inline the HTML by un-commenting this line:
