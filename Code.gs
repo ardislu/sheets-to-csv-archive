@@ -48,8 +48,5 @@ function generateCSVArchive() {
   // where callback is a function to inject the data to an <a> tag and generateZipData is a helper function.
   const html = HtmlService.createHtmlOutputFromFile('download');
 
-  // If you don't want to use a separate download.html file, you can inline the HTML by un-commenting this line:
-  // const html = HtmlService.createHtmlOutput("<a download>Download</a><script>google.script.run.withSuccessHandler(data => document.querySelector('a').setAttribute('href', `data:application/zip;base64,${data}`)).generateZipData()</script>");
-
   UI.showModalDialog(html, 'Generating CSV archive...');
 }
