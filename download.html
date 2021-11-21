@@ -21,7 +21,7 @@
   }
 </style>
 
-<span></span><a download></a>
+<span></span><a></a>
 
 <script>
   const callback = data => {
@@ -30,6 +30,7 @@
 
     const a = document.querySelector('a');
     a.setAttribute('href', `${URL.createObjectURL(file)}`);
+    a.setAttribute('download', `${Date.now()}.zip`);
     a.textContent = 'Download ready! Click here to download the .zip archive.';
 
     document.querySelector('span').remove();
