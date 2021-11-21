@@ -25,7 +25,16 @@ function generateZipData() {
   let csvBlobs = [];
   for (let sheet of sheets) {
     let csvString = '';
-    sheet.getDataRange().getValues().forEach(row => csvString += `${row.join(',')}\n`); // Naively converts a sheet to CSV by inserting commas and newlines. Does not escape anything!
+    
+    const values = sheet.getDataRange().getValues();
+    for (let row of values) {
+      for (let cell of row) {
+        csvString += `"${cell.toString().replace('"', '""')}",`; // Wrap all cell values with double quotes. Escape double quote literals with another double quote.
+      }
+      csvString.slice(0, -1); // Remove trailing comma in the last value of the row
+      csvString += '\n';
+    }
+    
     csvBlobs.push(Utilities.newBlob(csvString, 'text/csv', `${sheet.getName()}.csv`));
   }
 
