@@ -25,8 +25,11 @@
 
 <script>
   const callback = data => {
+    const buffer = new Int8Array(data);
+    const file = new Blob([buffer], { type: 'application/zip' });
+
     const a = document.querySelector('a');
-    a.setAttribute('href', `data:application/zip;base64,${data}`);
+    a.setAttribute('href', `${URL.createObjectURL(file)}`);
     a.textContent = 'Download ready! Click here to download the .zip archive.';
 
     document.querySelector('span').remove();

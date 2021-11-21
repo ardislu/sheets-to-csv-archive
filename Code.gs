@@ -40,7 +40,7 @@ function generateZipData() {
 
   const zip = Utilities.zip(csvBlobs);
 
-  return Utilities.base64Encode(zip.getBytes());
+  return zip.getBytes();
 }
 
 function generateCSVArchive() {
