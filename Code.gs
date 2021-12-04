@@ -1,26 +1,28 @@
-const UI = SpreadsheetApp.getUi();
-const WORKBOOK = SpreadsheetApp.getActive();
-
 function onOpen() {
-  UI.createMenu('📁 Archive')
+  const ui = SpreadsheetApp.getUi();
+
+  ui.createMenu('📁 Archive')
     .addItem('❓ Help', 'showHelp')
     .addItem('🔥 Generate CSV archive', 'generateCSVArchive')
     .addToUi();
 }
 
 function showHelp() {
+  const ui = SpreadsheetApp.getUi();
+
   const helpMessage = `Welcome to sheets-to-csv-archive!
 
 USAGE:
 - Edit the data on this workbook like you would on any other Google Sheet.
 - When ready, press the "Generate CSV archive" button to generate a .zip archive file containing a .csv file for each sheet in this Google Sheet.`;
 
-  UI.alert('Help', helpMessage, UI.ButtonSet.OK);
+  ui.alert('Help', helpMessage, ui.ButtonSet.OK);
 }
 
 // Helper function to return the server-side .zip data. This function will be called from the client-side HtmlService dialog.
 function generateZipData() {
-  const sheets = WORKBOOK.getSheets();
+  const workbook = SpreadsheetApp.getActive();
+  const sheets = workbook.getSheets();
 
   let csvBlobs = [];
   for (let sheet of sheets) {
@@ -44,9 +46,11 @@ function generateZipData() {
 }
 
 function generateCSVArchive() {
+  const ui = SpreadsheetApp.getUi();
+
   // To fetch the server-side data from the client-side iframe, google.script.run.withSuccessHandler.(callback).generateZipData() is called, 
   // where callback is a function to inject the data to an <a> tag and generateZipData is a helper function.
   const html = HtmlService.createHtmlOutputFromFile('download');
 
-  UI.showModalDialog(html, 'Generating CSV archive...');
+  ui.showModalDialog(html, 'Generating CSV archive...');
 }
