@@ -7,7 +7,7 @@
 
 <body>
   <script>
-    const callback = data => {
+    google.script.run.withSuccessHandler(data => {
       const buffer = new Int8Array(data);
       const file = new File([buffer], `${Date.now()}.zip`, { type: 'application/zip' });
 
@@ -15,11 +15,9 @@
       a.setAttribute('href', `${URL.createObjectURL(file)}`);
       a.setAttribute('download', file.name);
       a.click();
-      
-      google.script.host.close();
-    }
 
-    google.script.run.withSuccessHandler(callback).generateZipData();
+      google.script.host.close();
+    }).generateZipData();
   </script>
 </body>
 
