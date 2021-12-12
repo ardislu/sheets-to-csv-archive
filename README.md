@@ -1,6 +1,6 @@
 # sheets-to-csv-archive
 
-This is a Google Apps Script (GAS) project which adds a "Generate CSV Archive" button to Google Sheets that allows users to download a .zip file containing a .csv file for each sheet in the Google Sheet.
+This is a Google Apps Script (GAS) project which adds a "Download CSV Archive" button to Google Sheets that allows users to download a .zip file containing a .csv file for each sheet in the Google Sheet.
 
 ## Setup
 
@@ -20,4 +20,4 @@ This is a Google Apps Script (GAS) project which adds a "Generate CSV Archive" b
 
 2. Wait for the Google Sheet to finish loading. There should now be an `📁 Archive` button on the Google Sheets menu
 
-3. Press `📁 Archive > 🔥 Generate CSV archive`
+3. Press `📁 Archive > 🔥 Download CSV archive`

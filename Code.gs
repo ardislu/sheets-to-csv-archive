@@ -9,7 +9,7 @@ function onOpen() {
 
   ui.createMenu('📁 Archive')
     .addItem('❓ Help', 'showHelp')
-    .addItem('🔥 Generate CSV archive', 'generateCSVArchive')
+    .addItem('🔥 Download CSV archive', 'downloadCSVArchive')
     .addToUi();
 }
 
@@ -51,7 +51,7 @@ function generateZipData() {
   return zip.getBytes();
 }
 
-function generateCSVArchive() {
+function downloadCSVArchive() {
   const ui = SpreadsheetApp.getUi();
 
   // To fetch the server-side data from the client-side iframe, google.script.run.withSuccessHandler.(callback).generateZipData() is called, 
