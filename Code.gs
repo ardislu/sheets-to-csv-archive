@@ -56,7 +56,7 @@ function generateCSVArchive() {
 
   // To fetch the server-side data from the client-side iframe, google.script.run.withSuccessHandler.(callback).generateZipData() is called, 
   // where callback is a function to inject the data to an <a> tag and generateZipData is a helper function.
-  const html = HtmlService.createHtmlOutputFromFile('download');
+  const html = HtmlService.createHtmlOutputFromFile('download').setWidth(1).setHeight(1);
 
-  ui.showModalDialog(html, 'Generating CSV archive...');
+  ui.showModelessDialog(html, 'Generating file...');
 }
