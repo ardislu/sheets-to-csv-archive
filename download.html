@@ -1,40 +1,50 @@
-<style type="text/css">
-  span {
-    display: inline-block;
-    box-sizing: border-box;
-    height: 1em;
-    width: 1em;
-    border: 0.25em solid transparent;
-    border-top: 0.25em solid black;
-    border-radius: 50%;
-    animation: 1s infinite spin;
-  }
+<!DOCTYPE html>
+<html>
 
-  @keyframes spin {
-    from {
-      transform: rotate(0deg);
+<head>
+  <base target="_top">
+  <style type="text/css">
+    span {
+      display: inline-block;
+      box-sizing: border-box;
+      height: 1em;
+      width: 1em;
+      border: 0.25em solid transparent;
+      border-top: 0.25em solid black;
+      border-radius: 50%;
+      animation: 1s infinite spin;
     }
 
-    to {
-      transform: rotate(360deg);
+    @keyframes spin {
+      from {
+        transform: rotate(0deg);
+      }
+
+      to {
+        transform: rotate(360deg);
+      }
     }
-  }
-</style>
+  </style>
+</head>
 
-<span></span><a></a>
+<body>
+  <span></span><a></a>
 
-<script>
-  const callback = data => {
-    const buffer = new Int8Array(data);
-    const file = new Blob([buffer], { type: 'application/zip' });
+  <script>
+    const callback = data => {
+      const buffer = new Int8Array(data);
+      const file = new Blob([buffer], { type: 'application/zip' });
 
-    const a = document.querySelector('a');
-    a.setAttribute('href', `${URL.createObjectURL(file)}`);
-    a.setAttribute('download', `${Date.now()}.zip`);
-    a.textContent = 'Download ready! Click here to download the .zip archive.';
+      const a = document.querySelector('a');
+      a.setAttribute('href', `${URL.createObjectURL(file)}`);
+      a.setAttribute('download', `${Date.now()}.zip`);
+      a.textContent = 'Download ready! Click here to download the .zip archive.';
 
-    document.querySelector('span').remove();
-  }
+      document.querySelector('span').remove();
+    }
 
-  google.script.run.withSuccessHandler(callback).generateZipData();
-</script>
+    google.script.run.withSuccessHandler(callback).generateZipData();
+  </script>
+</body>
+
+</html>
