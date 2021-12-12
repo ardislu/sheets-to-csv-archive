@@ -3,32 +3,10 @@
 
 <head>
   <base target="_top">
-  <style type="text/css">
-    span {
-      display: inline-block;
-      box-sizing: border-box;
-      height: 1em;
-      width: 1em;
-      border: 0.25em solid transparent;
-      border-top: 0.25em solid black;
-      border-radius: 50%;
-      animation: 1s infinite spin;
-    }
-
-    @keyframes spin {
-      from {
-        transform: rotate(0deg);
-      }
-
-      to {
-        transform: rotate(360deg);
-      }
-    }
-  </style>
 </head>
 
 <body>
-  <span></span><a></a>
+  <a></a>
 
   <script>
     const callback = data => {
@@ -39,8 +17,6 @@
       a.setAttribute('href', `${URL.createObjectURL(file)}`);
       a.setAttribute('download', `${Date.now()}.zip`);
       a.textContent = 'Download ready! Click here to download the .zip archive.';
-
-      document.querySelector('span').remove();
     }
 
     google.script.run.withSuccessHandler(callback).generateZipData();
