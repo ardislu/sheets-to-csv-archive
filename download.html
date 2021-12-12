@@ -6,17 +6,15 @@
 </head>
 
 <body>
-  <a></a>
-
   <script>
     const callback = data => {
       const buffer = new Int8Array(data);
       const file = new File([buffer], `${Date.now()}.zip`, { type: 'application/zip' });
 
-      const a = document.querySelector('a');
+      const a = document.createElement('a');
       a.setAttribute('href', `${URL.createObjectURL(file)}`);
       a.setAttribute('download', file.name);
-      a.textContent = 'Download ready! Click here to download the .zip archive.';
+      a.click();
     }
 
     google.script.run.withSuccessHandler(callback).generateZipData();
