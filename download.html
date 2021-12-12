@@ -11,11 +11,11 @@
   <script>
     const callback = data => {
       const buffer = new Int8Array(data);
-      const file = new Blob([buffer], { type: 'application/zip' });
+      const file = new File([buffer], `${Date.now()}.zip`, { type: 'application/zip' });
 
       const a = document.querySelector('a');
       a.setAttribute('href', `${URL.createObjectURL(file)}`);
-      a.setAttribute('download', `${Date.now()}.zip`);
+      a.setAttribute('download', file.name);
       a.textContent = 'Download ready! Click here to download the .zip archive.';
     }
 
