@@ -18,9 +18,9 @@ function showHelp() {
 
   const helpMessage = `Welcome to sheets-to-csv-archive!
 
-USAGE:
-- Edit the data on this workbook like you would on any other Google Sheet.
-- When ready, press the "Generate CSV archive" button to generate a .zip archive file containing a .csv file for each sheet in this Google Sheet.`;
+  USAGE:
+  - Edit the data on this workbook like you would on any other Google Sheet.
+  - When ready, press the "Download CSV archive" button to generate a .zip archive file containing a .csv file for each sheet in this Google Sheet.`;
 
   ui.alert('Help', helpMessage, ui.ButtonSet.OK);
 }
