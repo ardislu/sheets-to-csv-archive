@@ -12,8 +12,8 @@
       const file = new File([buffer], `${Date.now()}.zip`, { type: 'application/zip' });
 
       const a = document.createElement('a');
-      a.setAttribute('href', `${URL.createObjectURL(file)}`);
-      a.setAttribute('download', file.name);
+      a.href = `${URL.createObjectURL(file)}`;
+      a.download = file.name;
       a.click();
 
       google.script.host.close();
