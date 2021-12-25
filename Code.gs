@@ -37,7 +37,7 @@ function generateZipData() {
     const values = sheet.getDataRange().getValues();
     for (let row of values) {
       for (let cell of row) {
-        csvString += `"${cell.toString().replace('"', '""')}",`; // Wrap all cell values with double quotes. Escape double quote literals with another double quote.
+        csvString += `"${cell.toString().replaceAll('"', '""')}",`; // Wrap all cell values with double quotes. Escape double quote literals with another double quote.
       }
       csvString.slice(0, -1); // Remove trailing comma in the last value of the row
       csvString += '\n';
