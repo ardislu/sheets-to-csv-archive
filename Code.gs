@@ -33,7 +33,7 @@ function generateZipData() {
   let csvBlobs = [];
   for (let sheet of sheets) {
     let csvString = '';
-    
+
     const values = sheet.getDataRange().getValues();
     for (let row of values) {
       for (let cell of row) {
@@ -42,7 +42,7 @@ function generateZipData() {
       csvString.slice(0, -1); // Remove trailing comma in the last value of the row
       csvString += '\n';
     }
-    
+
     csvBlobs.push(Utilities.newBlob(csvString, 'text/csv', `${sheet.getName()}.csv`));
   }
 
