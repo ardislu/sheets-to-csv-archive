@@ -30,20 +30,11 @@ function generateZipData() {
   const workbook = SpreadsheetApp.getActive();
   const sheets = workbook.getSheets();
 
-  let csvBlobs = [];
-  for (let sheet of sheets) {
-    let csvString = '';
-
+  const csvBlobs = [];
+  for (const sheet of sheets) {
     const values = sheet.getDataRange().getValues();
-    for (let row of values) {
-      for (let cell of row) {
-        csvString += `"${cell.toString().replaceAll('"', '""')}",`; // Wrap all cell values with double quotes. Escape double quote literals with another double quote.
-      }
-      csvString = csvString.slice(0, -1); // Remove trailing comma in the last value of the row
-      csvString += '\n';
-    }
-
-    csvBlobs.push(Utilities.newBlob(csvString, 'text/csv', `${sheet.getName()}.csv`));
+    const csv = values.map(row => row.map(cell => `"${cell.toString().replaceAll('"', '""')}"`).join(',')).join('\n');
+    csvBlobs.push(Utilities.newBlob(csv, 'text/csv', `${sheet.getName()}.csv`));
   }
 
   const zip = Utilities.zip(csvBlobs);
